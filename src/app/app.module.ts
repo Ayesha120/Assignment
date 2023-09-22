@@ -8,14 +8,16 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component'; 
 import { BookmarkedRepoComponent } from './repository/bookmarked-repo/bookmarked-repo.component';
-import { SearchRepoComponent } from './repository/search-repo/search-repo.component'; 
+import { SearchRepoComponent } from './repository/search-repo/search-repo.component';
+import { SplashComponent } from './splash/splash.component'; 
 
 
 @NgModule({
   declarations: [
     AppComponent, 
     BookmarkedRepoComponent,
-    SearchRepoComponent, 
+    SearchRepoComponent,
+    SplashComponent, 
   ],
   imports: [
     BrowserModule,

@@ -1,87 +1,85 @@
-<div class="container">
-
+<div class="container" >
     <section class="minHeight">
-        <div class="row g-3" [ngClass]="{'w-100': searchResults.length == 0}">
-            <div class="col-12">
-                <h3 class="page-title">Github Respository</h3>
-                <div class="d-flex flex-wrap gap-2">
-                    <div class="search flex-grow-1">
-                        <span class="material-symbols-outlined">
-                            search
-                        </span>
-                        <input type="text" [(ngModel)]="searchTerm" class="form-control form-control-lg"
-                            placeholder="Search Repository">
-                        <button *ngIf="!loader" class="btn btn-primary" (click)="onSearch()">Search</button>
-                        <button *ngIf="loader" class="btn btn-primary" type="button" disabled>
-                            Please Wait ...
+        <div class="w-100">
+            <div class="row g-3">
+                <div class="col-12">
+                    <h3 class="page-title">Github Respository</h3>
+                    <div class="d-flex flex-wrap gap-2">
+                        <div class="search flex-grow-1">
+                            <span class="material-symbols-outlined">
+                                search
+                            </span>
+                            <input type="text" [(ngModel)]="searchTerm" class="form-control form-control-lg"
+                                placeholder="Search Repository">
+                            <button *ngIf="!loader" class="btn btn-primary" (click)="onSearch()">Search</button>
+                            <button *ngIf="loader" class="btn btn-primary" type="button" disabled>
+                                Please Wait ...
+                            </button>
+                        </div>
+                        <button title="bookmarked Repo" class="btn btn-secondary" routerLink="/bookmarked-repository">
+                            <div class="flex">
+                                <span class="material-symbols-outlined">
+                                    bookmarks
+                                </span>
+                                <span> Repo</span>
+                            </div>
                         </button>
                     </div>
-                    <button title="bookmarked Repo" class="btn btn-secondary" routerLink="/bookmarked-repository">
-                        <div class="flex">
-                            <span class="material-symbols-outlined">
-                                bookmarks
-                            </span>
-                            <span> Repo</span>
-                        </div>
-                    </button>
+                </div> 
+                <div *ngIf="loader" class="col-12 position-relative">
+                    <div class="loader">Loading...</div>
                 </div>
-            </div>
-
-            <div *ngIf="loader" class="col-12 position-relative">
-                <div class="loader">Loading...</div>
-            </div>
-            <div class="col-12">
-                <div *ngIf="error" class="error-message">{{ error }}</div>
-            </div>
-            <div *ngIf="searchResults.length > 0" class="col-12">
-                <div class="row" [ngClass]="{'margin_top': loader == true}">
-                    <div class="col-12 ">
-                        <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Owner</th>
-                                        <th>Description</th>
-                                       
-                                        <th>Rating</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr
-                                        *ngFor="let repo of searchResults  | paginate: { itemsPerPage: 10, currentPage: p }">
-                                        <td>{{repo.name}}</td>
-                                        <td>{{repo.owner}}</td>
-                                        <td>{{repo.description}}</td> 
-                                        <td>
-                                            {{repo.stars}}
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-mute text-white " (click)="onBookmark(repo)">
-                                                <div class="flex">
-                                                    <span class="material-symbols-outlined">
-                                                        bookmark_add
-                                                    </span>
-                                                   <span>
-                                                    Bookmark
-                                                   </span>
-                                                </div>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                <div class="col-12">
+                    <div *ngIf="error" class="error-message">{{ error }}</div>
+                </div>
+                <div *ngIf="searchResults.length > 0" class="col-12">
+                    <div class="row" [ngClass]="{'margin_top': loader == true}">
+                        <div class="col-12 ">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Owner</th>
+                                            <th>Description</th> 
+                                            <th>Rating</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr
+                                            *ngFor="let repo of searchResults  | paginate: { itemsPerPage: 10, currentPage: p }">
+                                            <td>{{repo.name}}</td>
+                                            <td>{{repo.owner}}</td>
+                                            <td>{{repo.description}}</td>  
+                                            <td>
+                                                {{repo.stars}}
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-mute text-white " (click)="onBookmark(repo)">
+                                                    <div class="flex">
+                                                        <span class="material-symbols-outlined">
+                                                            bookmark_add
+                                                        </span>
+                                                       <span>
+                                                        Bookmark
+                                                       </span>
+                                                    </div>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-12 text-center mt-3">
+                            <pagination-controls (pageChange)="p = $event"></pagination-controls>
                         </div>
                     </div>
-                    <div class="col-12 text-center mt-3">
-                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
-                    </div>
+                </div> 
+                <div class="col-12 text-center" *ngIf="dataNotFound" [ngClass]="{'margin_top': loader == true}">
+                    <h3 class="page-title mb-0">No Data Found.</h3>
                 </div>
-            </div>
-
-            <div class="col-12 text-center" *ngIf="dataNotFound" [ngClass]="{'margin_top': loader == true}">
-                <h3 class="page-title mb-0">No Data Found.</h3>
             </div>
         </div>
     </section>

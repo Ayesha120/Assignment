@@ -1,3 +1,9 @@
+# I2cAssignment-Author
+
+Ayesha Javaid
+Frontend Developer at Xint Solutions
+ashaw2163@gmail.com
+
 # I2cAssignment
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.3.
@@ -5,6 +11,10 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+
+## Project Run
+
+Clone this project and run this command on your terminal "npm install"
 
 ## Code scaffolding
 
@@ -24,4 +34,5 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 ## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+contact me at my email address ashaw2163@gmail.com.
+
